@@ -74,6 +74,11 @@
         <p style="margin-top: 30px;text-align: center;font-size:30px;font-weight:bold;">
           <span>امتیاز شما : </span>
           <span id="emtiaz" style="color:red;">-</span>
+          <ons-icon icon="fa-star" class="star star-1 star-2 star-3 star-4 star-5"></ons-icon>
+          <ons-icon icon="fa-star" class="star star-2 star-3 star-4 star-5"></ons-icon>
+          <ons-icon icon="fa-star" class="star star-3 star-4 star-5"></ons-icon>
+          <ons-icon icon="fa-star" class="star star-4 star-5"></ons-icon>
+          <ons-icon icon="fa-star" class="star star-5"></ons-icon>
         </p>
         <div id="dates"></div>
         <!--
@@ -471,11 +476,18 @@
           }
         }
         if(user_id>0 && e.index==1){
+          $(".star").css('color','#fff');
           $(".loading").show();
           getEmtiaz(function(dt){
             $(".loading").hide();
             if(dt){
               $("#emtiaz").text(dt.items[0].emtiaz);
+              var emtz = parseInt(dt.items[0].emtiaz, 10)/20;
+              emtz = parseInt(emtz, 10);
+              if(emtz>5){
+                emtz = 5;
+              }
+              $(".star-"+emtz).css('color','yellow');
             }
           });
         }

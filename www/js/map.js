@@ -6,12 +6,18 @@ var travel_mode_names = {
   1:'پیاده',
   2:'دوچرخه',
   3:'خودرو',
-  4:'اتوبوس',
+  4:'اتوبوس واحد',
+  22:'اتوبوس غیرواحد',
+  23:'مینی بوس',
   5:'مترو',
   6:'ایست',
   7:'موتورسیکلت',
   8:'تاکسی',
-  9:'وانت بار'
+  21:'مسافرکش',
+  9:'وانت',
+  24:'کامیون دومحور',
+  25:'کامیون سه محور',
+  26:'تریلی'
 
 };
 var stops_names = {
@@ -157,6 +163,7 @@ function initMapPath1(){
   map_path1.setCenter(center, zoom );
 }
 function selectFeild(inFeild){
+  document.querySelector('#fourth-page .page__content').scrollTop = 0;
   feild = inFeild;
   if(typeof map_user === 'undefined'){
     initMap();
@@ -461,7 +468,7 @@ function viewPath(dt){
             $("#travel_mode").append(travel_modes[i].start.split(':')[0]+':'+travel_modes[i].start.split(':')[1]+' '+travel_modes[i].end.split(':')[0]+':'+travel_modes[i].end.split(':')[1]+'<br/>');
             sel = '<div style="text-align:center"><table style="width:100%"><tr>';
             sel += ((mode_icon[travel_modes[i].mode])?'<td style="text-align:right;width:50%"><ons-icon id="mode_icon_'+i+'" icon="fa-'+mode_icon[travel_modes[i].mode]+'" ></ons-icon></td><td style="text-align:left">':'<td style="text-align:center">')+'<select class="modes" id="mode_'+i+'" onchange="mode_change(this);">';
-            for(var j = 0;j<10;j++){
+            for(j in travel_mode_names){
               if(j!=6){
                 sel += '<option value="'+j+'"'+((j==travel_modes[i].mode)?' selected':'')+' >';
                 sel += travel_mode_names[j];

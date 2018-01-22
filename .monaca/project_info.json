@@ -18,7 +18,7 @@
         "cordova-plugin-background-mode"
     ],
     "title-ja": "",
-    "title-en": "Bachi",
+    "title-en": "",
     "description-ja": "",
     "description-en": "",
     "category": "User Template",
@@ -26,5 +26,5 @@
         "android",
         "ios"
     ],
-    "name": "generated-1515992607-58bd08df013eb0ea50591f93"
+    "name": "generated-1516606248-58bd08df013eb0ea50591f93"
 }
