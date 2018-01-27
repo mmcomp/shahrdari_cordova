@@ -15,6 +15,7 @@ var travel_mode_names = {
   8:'تاکسی',
   21:'مسافرکش',
   9:'وانت',
+  27:'کامیونت',
   24:'کامیون دومحور',
   25:'کامیون سه محور',
   26:'تریلی'
@@ -41,8 +42,20 @@ var travel_mode_rahatis = {
   0:'',
   1:'خیلی کم',
   2:'کم',
-  3:'بین ده دقیقه تا یک ربع ',
-  4:'بیش از یک ربع '
+  3:'خوب',
+  4:'خیلی خوب'
+}
+var bars = {
+  1:'سوخت وفراورده هاي نفتي',
+  2:'مصالح ساختماني',
+  3:'مواد غذايي',
+  4:'ميوه و تره بار',
+  5:'محصولات كشاورزي',
+  6:'محصولات صنعتي، توليدي و معدني',
+  7:'زباله و نخاله',
+  8:'اثاثيه منزل',
+  9:'محموله پستي',
+  10:'ساير'
 }
 var mode_icon = {
   1:'male',
@@ -493,6 +506,15 @@ function viewPath(dt){
               sel += travel_mode_rahatis[j];
               sel += '</option>';
             }
+            sel += '</select></div>';
+            sel += '<div id="bar-div-'+i+'" style="text-align:right">';
+            sel += '<p>'+'نوع بار را مشخص نمایید؟'+'</p>';
+            sel+= '<select class="bar-type" id="bar_type_'+i+'">';
+            for(j in bars){
+              sel += '<option value="'+j+'" >';
+              sel += bars[j];
+              sel += '</option>';
+            }
             sel += '</select></div>'
             $("#travel_mode").append(sel);
             // if(even===true)
@@ -637,11 +659,17 @@ function mode_change(dobj){
   // alert(obj.val());
   var i = obj.prop('id').split('_')[1];
   var selected_mode = obj.val();
-  if(selected_mode == 3 || selected_mode == 4 || selected_mode == 5){
+  $("#bar_type_"+i).hide();
+  if(selected_mode == 3 || selected_mode == 4 || selected_mode == 5 || selected_mode == 9 || (selected_mode >= 24 && selected_mode <= 27)){
     $("#answer-div-"+i).show();
     if(selected_mode == 3){
       $("#question"+i).html('اگر از خودرو شخصی استفاده کردید زمان پیدا کردن پارکینگ');
       $("#rahati-div-"+i).hide();
+    }else if(selected_mode == 9 || (selected_mode >= 24 && selected_mode <= 27)){
+      $("#question"+i).html('نوع بار چه بوده است؟');
+      $("#bar_type_"+i).show();
+      $("#rahati-div-"+i).hide();
+      $("#answer-div-"+i).hide();
     }else{
       $("#question"+i).html('اگر وسیله مترو یا اتوبوس است زمان  انتظار برای رسیدن وسیله حمل و نقل عمومی  چقدر بود؟ ');
       $("#rahati-div-"+i).show();
