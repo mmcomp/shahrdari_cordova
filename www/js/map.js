@@ -659,7 +659,7 @@ function mode_change(dobj){
   // alert(obj.val());
   var i = obj.prop('id').split('_')[1];
   var selected_mode = obj.val();
-  $("#bar_type_"+i).hide();
+  $("#bar-div-"+i).hide();
   if(selected_mode == 3 || selected_mode == 4 || selected_mode == 5 || selected_mode == 9 || (selected_mode >= 24 && selected_mode <= 27)){
     $("#answer-div-"+i).show();
     if(selected_mode == 3){
@@ -667,7 +667,7 @@ function mode_change(dobj){
       $("#rahati-div-"+i).hide();
     }else if(selected_mode == 9 || (selected_mode >= 24 && selected_mode <= 27)){
       $("#question"+i).html('نوع بار چه بوده است؟');
-      $("#bar_type_"+i).show();
+      $("#bar-div-"+i).show();
       $("#rahati-div-"+i).hide();
       $("#answer-div-"+i).hide();
     }else{
