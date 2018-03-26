@@ -2,10 +2,9 @@ var map_user,map_path,map_path1,baseLayer,pointLayer,layer;
 var small_mode = 180000;
 var travel_modes = [];
 var travel_mode_names = {
-  0:'نامشخص',
   1:'پیاده',
   2:'دوچرخه',
-  3:'خودرو',
+  3:'خودروشخصی',
   4:'اتوبوس واحد',
   22:'اتوبوس غیرواحد',
   23:'مینی بوس',
@@ -18,8 +17,8 @@ var travel_mode_names = {
   27:'کامیونت',
   24:'کامیون دومحور',
   25:'کامیون سه محور',
-  26:'تریلی'
-
+  26:'تریلی'/*,
+  0:'نامشخص'*/
 };
 var stops_names = {
   0:'نامشخص',
@@ -107,6 +106,9 @@ function onFeatureAdded(a){
   var out = convToGood(a.geometry.x,a.geometry.y);
   // alert(out.lon+','+out.lat);
   $("#"+feild).val(out.lon+','+out.lat);
+  $("#"+feild).after('X');
+  alert('مکان برروی نقشه با موفقیت ثبت گردید');
+  $("#demoMap").hide();
 }
 function initMap(){
   id = "demoMap";
@@ -176,6 +178,7 @@ function initMapPath1(){
   map_path1.setCenter(center, zoom );
 }
 function selectFeild(inFeild){
+  $("#demoMap").show();
   document.querySelector('#fourth-page .page__content').scrollTop = 0;
   feild = inFeild;
   if(typeof map_user === 'undefined'){

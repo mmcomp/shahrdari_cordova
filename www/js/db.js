@@ -137,6 +137,7 @@ function register(){
   }else{
     register_state = true;
     $(".reg").show();
+    $("#demoMap").hide();
     $(".hid").hide();
   }
   
@@ -145,6 +146,7 @@ function login(){
   if(register_state){
     register_state = false;
     $(".reg").hide();
+    $("#demoMap").show();
   }else{
     var password = $("#password").val();
     var username = $("#username").val();
